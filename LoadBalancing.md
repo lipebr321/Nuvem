@@ -41,3 +41,15 @@ http {
         }
     }
 }
+
+```
+
+- `http`: Define um bloco de configuração para o servidor HTTP Nginx.
+- `upstream app_servers`: Define um grupo de servidores de aplicativos que serão balanceados de carga. Neste caso, temos três servidores com os endereços IP `192.168.1.101`, `192.168.1.102` e `192.168.1.103`.
+- `server { ... }`: Define as configurações para um servidor web Nginx.
+  - `listen 80;`: Especifica que o servidor web Nginx deve escutar as solicitações na porta 80.
+  - `location / { ... }`: Define uma localização padrão para o servidor web Nginx.
+    - `proxy_pass http://app_servers;`: Encaminha todas as solicitações recebidas para a localização especificada (`/`) para o grupo de servidores `app_servers` definido anteriormente. Isso significa que o Nginx atua como um proxy reverso, distribuindo o tráfego entre os servidores de aplicativos listados no grupo `app_servers`.
+   
+    
+
